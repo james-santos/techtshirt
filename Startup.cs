@@ -9,6 +9,11 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using techtshirt.Data;
+using techtshirt.Models;
+using Microsoft.EntityFrameworkCore;
+
+
 
 namespace techtshirt
 {
@@ -31,6 +36,7 @@ namespace techtshirt
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDbContext<techtshirtContext>(options => options.UseSqlServer(Configuration.GetConnectionString("techtshirtContext")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
