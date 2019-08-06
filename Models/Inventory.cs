@@ -1,3 +1,5 @@
+using System;
+
 namespace techtshirt.Models
 {
     public class Inventory

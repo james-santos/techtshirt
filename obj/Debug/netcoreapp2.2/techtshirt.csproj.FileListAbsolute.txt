@@ -58,3 +58,9 @@ C:/Users/james/source/repos/techtshirt/obj/Debug/netcoreapp2.2/techtshirt.csproj
 /home/robin/csharp-projects/techtshirt/obj/Debug/netcoreapp2.2/techtshirt.dll
 /home/robin/csharp-projects/techtshirt/obj/Debug/netcoreapp2.2/techtshirt.pdb
 /home/robin/csharp-projects/techtshirt/obj/Debug/netcoreapp2.2/techtshirt.csproj.CopyComplete
+/home/robin/csharp-projects/techtshirt/obj/Debug/netcoreapp2.2/Razor/Pages/Inventorys/Create.g.cshtml.cs
+/home/robin/csharp-projects/techtshirt/obj/Debug/netcoreapp2.2/Razor/Pages/Inventorys/Delete.g.cshtml.cs
+/home/robin/csharp-projects/techtshirt/obj/Debug/netcoreapp2.2/Razor/Pages/Inventorys/Details.g.cshtml.cs
+/home/robin/csharp-projects/techtshirt/obj/Debug/netcoreapp2.2/Razor/Pages/Inventorys/Edit.g.cshtml.cs
+/home/robin/csharp-projects/techtshirt/obj/Debug/netcoreapp2.2/Razor/Pages/Inventorys/Index.g.cshtml.cs
+/home/robin/csharp-projects/techtshirt/obj/Debug/netcoreapp2.2/Razor/Pages/_ValidationScriptsPartial.g.cshtml.cs

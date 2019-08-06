@@ -1,0 +1,73 @@
+@page
+@model techtshirt.Pages.Inventorys.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Inventory</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Inventory.name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Inventory.name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Inventory.description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Inventory.description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Inventory.size)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Inventory.size)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Inventory.color)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Inventory.color)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Inventory.on_hand_qty)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Inventory.on_hand_qty)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Inventory.cost)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Inventory.cost)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Inventory.sale_price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Inventory.sale_price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Inventory.allocated_qty)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Inventory.allocated_qty)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Inventory.total_qty)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Inventory.total_qty)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Inventory.id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
