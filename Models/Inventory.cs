@@ -2,6 +2,7 @@ using System;
 
 namespace techtshirt.Models
 {
+    // Inventory is configured via OnModelCreating
     public class Inventory
     {
         public int id { get; set; }
