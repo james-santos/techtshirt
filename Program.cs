@@ -25,6 +25,7 @@ namespace techtshirt
                 {
                     var context = services.GetRequiredService<techtshirtContext>();
 
+                    // call seed with this
                     DbInitializer.Initialize(context);
                     context.Database.EnsureCreated();
                 }

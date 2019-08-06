@@ -14,8 +14,32 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"88d5704d7b248294b2cdeb7def03d6003da14dfe", @"/Pages/Inventorys/Index.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"6c2ca66c134f80dbb0d4dbb474391bcb57bdddd2", @"/Pages/_ViewImports.cshtml")]
     public class Pages_Inventorys_Index : global::Microsoft.AspNetCore.Mvc.RazorPages.Page
     {
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-page", "Create", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_1 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-page", "./Edit", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_2 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-page", "./Details", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_3 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-page", "./Delete", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        #line hidden
+        #pragma warning disable 0169
+        private string __tagHelperStringValueBuffer;
+        #pragma warning restore 0169
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner __tagHelperRunner = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner();
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __backed__tagHelperScopeManager = null;
+        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __tagHelperScopeManager
+        {
+            get
+            {
+                if (__backed__tagHelperScopeManager == null)
+                {
+                    __backed__tagHelperScopeManager = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager(StartTagHelperWritingScope, EndTagHelperWritingScope);
+                }
+                return __backed__tagHelperScopeManager;
+            }
+        }
+        private global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
@@ -28,8 +52,30 @@ namespace AspNetCore
 
 #line default
 #line hidden
-            BeginContext(97, 156, true);
-            WriteLiteral("\r\n<h1>Index</h1>\r\n\r\n<p>\r\n    <a asp-page=\"Create\">Create New</a>\r\n</p>\r\n<table class=\"table\">\r\n    <thead>\r\n        <tr>\r\n            <th>\r\n                ");
+            BeginContext(97, 29, true);
+            WriteLiteral("\r\n<h1>Index</h1>\r\n\r\n<p>\r\n    ");
+            EndContext();
+            BeginContext(126, 35, false);
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "88d5704d7b248294b2cdeb7def03d6003da14dfe4346", async() => {
+                BeginContext(147, 10, true);
+                WriteLiteral("Create New");
+                EndContext();
+            }
+            );
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Page = (string)__tagHelperAttribute_0.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_0);
+            await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+            if (!__tagHelperExecutionContext.Output.IsContentModified)
+            {
+                await __tagHelperExecutionContext.SetOutputContentAsync();
+            }
+            Write(__tagHelperExecutionContext.Output);
+            __tagHelperExecutionContext = __tagHelperScopeManager.End();
+            EndContext();
+            BeginContext(161, 92, true);
+            WriteLiteral("\r\n</p>\r\n<table class=\"table\">\r\n    <thead>\r\n        <tr>\r\n            <th>\r\n                ");
             EndContext();
             BeginContext(254, 53, false);
 #line 17 "/home/robin/csharp-projects/techtshirt/Pages/Inventorys/Index.cshtml"
@@ -216,38 +262,113 @@ namespace AspNetCore
 #line default
 #line hidden
             EndContext();
-            BeginContext(2225, 75, true);
-            WriteLiteral("\r\n            </td>\r\n            <td>\r\n                <a asp-page=\"./Edit\"");
+            BeginContext(2225, 55, true);
+            WriteLiteral("\r\n            </td>\r\n            <td>\r\n                ");
             EndContext();
-            BeginWriteAttribute("asp-route-id", " asp-route-id=\"", 2300, "\"", 2323, 1);
+            BeginContext(2280, 53, false);
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "88d5704d7b248294b2cdeb7def03d6003da14dfe13429", async() => {
+                BeginContext(2325, 4, true);
+                WriteLiteral("Edit");
+                EndContext();
+            }
+            );
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Page = (string)__tagHelperAttribute_1.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_1);
+            if (__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues == null)
+            {
+                throw new InvalidOperationException(InvalidTagHelperIndexerAssignment("asp-route-id", "Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper", "RouteValues"));
+            }
+            BeginWriteTagHelperAttribute();
 #line 77 "/home/robin/csharp-projects/techtshirt/Pages/Inventorys/Index.cshtml"
-WriteAttributeValue("", 2315, item.id, 2315, 8, false);
+                                       WriteLiteral(item.id);
 
 #line default
 #line hidden
-            EndWriteAttribute();
-            BeginContext(2324, 52, true);
-            WriteLiteral(">Edit</a> |\r\n                <a asp-page=\"./Details\"");
+            __tagHelperStringValueBuffer = EndWriteTagHelperAttribute();
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues["id"] = __tagHelperStringValueBuffer;
+            __tagHelperExecutionContext.AddTagHelperAttribute("asp-route-id", __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues["id"], global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+            await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+            if (!__tagHelperExecutionContext.Output.IsContentModified)
+            {
+                await __tagHelperExecutionContext.SetOutputContentAsync();
+            }
+            Write(__tagHelperExecutionContext.Output);
+            __tagHelperExecutionContext = __tagHelperScopeManager.End();
             EndContext();
-            BeginWriteAttribute("asp-route-id", " asp-route-id=\"", 2376, "\"", 2399, 1);
+            BeginContext(2333, 20, true);
+            WriteLiteral(" |\r\n                ");
+            EndContext();
+            BeginContext(2353, 59, false);
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "88d5704d7b248294b2cdeb7def03d6003da14dfe15727", async() => {
+                BeginContext(2401, 7, true);
+                WriteLiteral("Details");
+                EndContext();
+            }
+            );
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Page = (string)__tagHelperAttribute_2.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_2);
+            if (__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues == null)
+            {
+                throw new InvalidOperationException(InvalidTagHelperIndexerAssignment("asp-route-id", "Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper", "RouteValues"));
+            }
+            BeginWriteTagHelperAttribute();
 #line 78 "/home/robin/csharp-projects/techtshirt/Pages/Inventorys/Index.cshtml"
-WriteAttributeValue("", 2391, item.id, 2391, 8, false);
+                                          WriteLiteral(item.id);
 
 #line default
 #line hidden
-            EndWriteAttribute();
-            BeginContext(2400, 54, true);
-            WriteLiteral(">Details</a> |\r\n                <a asp-page=\"./Delete\"");
+            __tagHelperStringValueBuffer = EndWriteTagHelperAttribute();
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues["id"] = __tagHelperStringValueBuffer;
+            __tagHelperExecutionContext.AddTagHelperAttribute("asp-route-id", __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues["id"], global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+            await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+            if (!__tagHelperExecutionContext.Output.IsContentModified)
+            {
+                await __tagHelperExecutionContext.SetOutputContentAsync();
+            }
+            Write(__tagHelperExecutionContext.Output);
+            __tagHelperExecutionContext = __tagHelperScopeManager.End();
             EndContext();
-            BeginWriteAttribute("asp-route-id", " asp-route-id=\"", 2454, "\"", 2477, 1);
+            BeginContext(2412, 20, true);
+            WriteLiteral(" |\r\n                ");
+            EndContext();
+            BeginContext(2432, 57, false);
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "88d5704d7b248294b2cdeb7def03d6003da14dfe18031", async() => {
+                BeginContext(2479, 6, true);
+                WriteLiteral("Delete");
+                EndContext();
+            }
+            );
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Page = (string)__tagHelperAttribute_3.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_3);
+            if (__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues == null)
+            {
+                throw new InvalidOperationException(InvalidTagHelperIndexerAssignment("asp-route-id", "Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper", "RouteValues"));
+            }
+            BeginWriteTagHelperAttribute();
 #line 79 "/home/robin/csharp-projects/techtshirt/Pages/Inventorys/Index.cshtml"
-WriteAttributeValue("", 2469, item.id, 2469, 8, false);
+                                         WriteLiteral(item.id);
 
 #line default
 #line hidden
-            EndWriteAttribute();
-            BeginContext(2478, 47, true);
-            WriteLiteral(">Delete</a>\r\n            </td>\r\n        </tr>\r\n");
+            __tagHelperStringValueBuffer = EndWriteTagHelperAttribute();
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues["id"] = __tagHelperStringValueBuffer;
+            __tagHelperExecutionContext.AddTagHelperAttribute("asp-route-id", __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues["id"], global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+            await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+            if (!__tagHelperExecutionContext.Output.IsContentModified)
+            {
+                await __tagHelperExecutionContext.SetOutputContentAsync();
+            }
+            Write(__tagHelperExecutionContext.Output);
+            __tagHelperExecutionContext = __tagHelperScopeManager.End();
+            EndContext();
+            BeginContext(2489, 36, true);
+            WriteLiteral("\r\n            </td>\r\n        </tr>\r\n");
             EndContext();
 #line 82 "/home/robin/csharp-projects/techtshirt/Pages/Inventorys/Index.cshtml"
 }

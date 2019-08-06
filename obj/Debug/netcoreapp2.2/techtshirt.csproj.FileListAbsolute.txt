@@ -64,3 +64,4 @@ C:/Users/james/source/repos/techtshirt/obj/Debug/netcoreapp2.2/techtshirt.csproj
 /home/robin/csharp-projects/techtshirt/obj/Debug/netcoreapp2.2/Razor/Pages/Inventorys/Edit.g.cshtml.cs
 /home/robin/csharp-projects/techtshirt/obj/Debug/netcoreapp2.2/Razor/Pages/Inventorys/Index.g.cshtml.cs
 /home/robin/csharp-projects/techtshirt/obj/Debug/netcoreapp2.2/Razor/Pages/_ValidationScriptsPartial.g.cshtml.cs
+/home/robin/csharp-projects/techtshirt/obj/Debug/netcoreapp2.2/Razor/Pages/_ViewImports.g.cshtml.cs
