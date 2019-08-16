@@ -57,6 +57,45 @@ namespace techtshirt.Models
                         total_qty = 80
                     }
                 );
+
+            // Look for any Customer.
+            if (context.Customer.Any())
+            {
+                return;   // DB has been seeded
+            }
+
+            context.Customer.AddRange(
+                    new Customer
+                    {
+                        first_name = "Jim",
+                        last_name = "Santos",
+                        type = "Individual",
+                        address = "100000 Marsh St, San Luis Obispo, CA",
+                        PhoneNumber = "(555) 555-5555",
+                        company = "EDR"
+                    },
+
+                    new Customer
+                    {
+                        first_name = "Robin",
+                        last_name = "Lee",
+                        type = "Individual",
+                        address = "100000 Higuera St, San Luis Obispo, CA",
+                        PhoneNumber = "(555) 555-5555",
+                        company = "FULLSTACK"
+                    },
+
+                    new Customer
+                    {
+                        first_name = "Dave",
+                        last_name = "Simmons",
+                        type = "Corporation",
+                        address = "100000 Sunset Blvd, LA, CA",
+                        PhoneNumber = "(555) 555-5555",
+                        company = "LLC"
+                    }
+                );
+
             context.SaveChanges();
         }
     }
