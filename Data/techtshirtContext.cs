@@ -15,6 +15,8 @@ namespace techtshirt.Data
 
         public DbSet<Inventory> Inventory { get; set; }
 
+        public DbSet<Customer> Customer { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // these two set the types for the decimal entity types for cost and sale_price
