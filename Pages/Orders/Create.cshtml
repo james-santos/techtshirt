@@ -1,0 +1,59 @@
+@page
+@model techtshirt.Pages.Orders.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Order</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Order.status" class="control-label"></label>
+                <input asp-for="Order.status" class="form-control" />
+                <span asp-validation-for="Order.status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Order.total_sale_price" class="control-label"></label>
+                <input asp-for="Order.total_sale_price" class="form-control" />
+                <span asp-validation-for="Order.total_sale_price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Order.total_pieces" class="control-label"></label>
+                <input asp-for="Order.total_pieces" class="form-control" />
+                <span asp-validation-for="Order.total_pieces" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Order.reference_code" class="control-label"></label>
+                <input asp-for="Order.reference_code" class="form-control" />
+                <span asp-validation-for="Order.reference_code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Order.date_placed" class="control-label"></label>
+                <input asp-for="Order.date_placed" class="form-control" />
+                <span asp-validation-for="Order.date_placed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Order.date_shipped" class="control-label"></label>
+                <input asp-for="Order.date_shipped" class="form-control" />
+                <span asp-validation-for="Order.date_shipped" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
