@@ -71,7 +71,7 @@ namespace techtshirt.Models
                         last_name = "Santos",
                         type = "Individual",
                         address = "100000 Marsh St, San Luis Obispo, CA",
-                        phone = "(555) 555-5555",
+                        phone = "555-555-5555",
                         company = "EDR"
                     },
 
@@ -81,7 +81,7 @@ namespace techtshirt.Models
                         last_name = "Lee",
                         type = "Individual",
                         address = "100000 Higuera St, San Luis Obispo, CA",
-                        phone = "(555) 555-5555",
+                        phone = "777-777-7777",
                         company = "FULLSTACK"
                     },
 
@@ -91,7 +91,7 @@ namespace techtshirt.Models
                         last_name = "Simmons",
                         type = "Corporation",
                         address = "100000 Sunset Blvd, LA, CA",
-                        phone = "(555) 555-5555",
+                        phone = "999-999-9999",
                         company = "LLC"
                     }
                 );
