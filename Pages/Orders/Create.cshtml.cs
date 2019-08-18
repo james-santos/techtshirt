@@ -20,12 +20,10 @@ namespace techtshirt.Pages.Orders
             _context = context;
         }
 
-        // public IList<Customer> Customer { get; private set; }
+        // this task provides the list of customers for the dropdown select list
         public List<SelectListItem> Options { get; set; }
         public async Task<IActionResult> OnGetAsync()
         {
-            // Customer = await _context.Customer.ToListAsync();
-
             Options = await _context.Customer.Select(a =>
                                   new SelectListItem
                                   {
