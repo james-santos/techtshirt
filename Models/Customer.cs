@@ -18,5 +18,6 @@ namespace techtshirt.Models
         public string phone { get; set; }
         public string company { get; set; }
 
+
     }
 }

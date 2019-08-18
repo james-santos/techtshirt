@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using techtshirt.Data;
 using techtshirt.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace techtshirt.Pages.Orders
 {
@@ -19,8 +20,18 @@ namespace techtshirt.Pages.Orders
             _context = context;
         }
 
-        public IActionResult OnGet()
+        // public IList<Customer> Customer { get; private set; }
+        public List<SelectListItem> Options { get; set; }
+        public async Task<IActionResult> OnGetAsync()
         {
+            // Customer = await _context.Customer.ToListAsync();
+
+            Options = await _context.Customer.Select(a =>
+                                  new SelectListItem
+                                  {
+                                      Value = a.id.ToString(),
+                                      Text =  a.first_name + " " + a.last_name
+                                  }).ToListAsync();
             return Page();
         }
 
@@ -39,5 +50,7 @@ namespace techtshirt.Pages.Orders
 
             return RedirectToPage("./Index");
         }
+
+
     }
 }
