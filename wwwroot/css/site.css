@@ -43,7 +43,7 @@ html {
 
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  margin: 0;
 }
 .footer {
   position: absolute;
@@ -54,3 +54,25 @@ body {
   height: 60px;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.sidebar {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 100;
+	padding: 0;
+	box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.sidebar .nav-link {
+	font-weight: 500;
+	color: #333;
+}
+
+/* .sticky-top {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	z-index: 1020;
+} */
