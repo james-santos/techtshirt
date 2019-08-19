@@ -28,7 +28,7 @@ namespace techtshirt.Pages.Customers
                 return NotFound();
             }
 
-            Customer = await _context.Customer.FirstOrDefaultAsync(m => m.ID == id);
+            Customer = await _context.Customer.FirstOrDefaultAsync(m => m.id == id);
 
             if (Customer == null)
             {

@@ -49,9 +49,9 @@
             @Html.DisplayFor(model => model.Customer.company)
         </dd>
     </dl>
-    
+
     <form method="post">
-        <input type="hidden" asp-for="Customer.ID" />
+        <input type="hidden" asp-for="Customer.id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-page="./Index">Back to List</a>
     </form>

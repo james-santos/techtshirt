@@ -22,7 +22,7 @@ namespace techtshirt.Pages.Orders
 
         [BindProperty]
         public Order Order { get; set; }
-
+        public List<SelectListItem> Options { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -36,6 +36,13 @@ namespace techtshirt.Pages.Orders
             {
                 return NotFound();
             }
+
+            Options = await _context.Customer.Select(a =>
+                                  new SelectListItem
+                                  {
+                                      Value = a.id.ToString(),
+                                      Text =  a.first_name + " " + a.last_name
+                                  }).ToListAsync();
             return Page();
         }
 

@@ -30,7 +30,7 @@ namespace techtshirt.Pages.Customers
                 return NotFound();
             }
 
-            Customer = await _context.Customer.FirstOrDefaultAsync(m => m.ID == id);
+            Customer = await _context.Customer.FirstOrDefaultAsync(m => m.id == id);
 
             if (Customer == null)
             {
@@ -54,7 +54,7 @@ namespace techtshirt.Pages.Customers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CustomerExists(Customer.ID))
+                if (!CustomerExists(Customer.id))
                 {
                     return NotFound();
                 }
@@ -69,7 +69,7 @@ namespace techtshirt.Pages.Customers
 
         private bool CustomerExists(int id)
         {
-            return _context.Customer.Any(e => e.ID == id);
+            return _context.Customer.Any(e => e.id == id);
         }
     }
 }

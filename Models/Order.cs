@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace techtshirt.Models
 {
@@ -12,6 +13,11 @@ namespace techtshirt.Models
         public string reference_code { get; set; }
         public DateTime date_placed { get; set; }
         public DateTime date_shipped { get; set; }
+
+
+        public int customer_id { get; set; }
+        [ForeignKey("customer_id")]
+        public Customer Customer { get; set; }
 
         // customer relationship
 

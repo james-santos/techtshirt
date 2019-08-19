@@ -12,40 +12,46 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Order.status)
+            Order Status
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Order.status)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Order.total_sale_price)
+            Total Sale Price
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Order.total_sale_price)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Order.total_pieces)
+            Total Pieces
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Order.total_pieces)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Order.reference_code)
+            Reference Code
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Order.reference_code)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Order.date_placed)
+            Order Date Placed
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Order.date_placed)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Order.date_shipped)
+            Order Date Shipped
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Order.date_shipped)
+        </dd>
+        <dt class="col-sm-2">
+            Customer ID
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order.customer_id)
         </dd>
     </dl>
 </div>
