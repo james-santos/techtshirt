@@ -15,7 +15,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Order.customer_id" class="control-label">Customers</label>
-                <select class="form-control" name="customer_id" asp-items="Model.Options"></select>
+                <select class="form-control" asp-for="Order.customer_id" asp-items="Model.Options"></select>
                 <span asp-validation-for="Order.customer_id" class="text-danger"></span>
             </div>
             <div class="form-group">

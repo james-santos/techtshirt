@@ -24,6 +24,7 @@ namespace techtshirt.Pages.Orders
         public List<SelectListItem> Options { get; set; }
         public async Task<IActionResult> OnGetAsync()
         {
+            // creates select options drop down razor pages way
             Options = await _context.Customer.Select(a =>
                                   new SelectListItem
                                   {
@@ -42,8 +43,7 @@ namespace techtshirt.Pages.Orders
             {
                 return Page();
             }
-            Console.WriteLine(Order.customer_id);
-            Console.WriteLine("Yo ia ms");
+
             _context.Order.Add(Order);
             await _context.SaveChangesAsync();
 

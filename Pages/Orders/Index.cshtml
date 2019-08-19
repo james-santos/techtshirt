@@ -31,7 +31,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Order[0].date_shipped)
             </th>
-            <th></th>
+             <th>
+                @Html.DisplayNameFor(model => model.Order[0].customer_id)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -54,6 +56,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.date_shipped)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.customer_id)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.id">Edit</a> |
