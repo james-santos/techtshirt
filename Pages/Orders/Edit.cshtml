@@ -45,6 +45,11 @@
                 <span asp-validation-for="Order.date_shipped" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Order.customer_id" class="control-label">Customers</label>
+                <select class="form-control" asp-for="Order.customer_id" asp-items="Model.Options"></select>
+                <span asp-validation-for="Order.customer_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
