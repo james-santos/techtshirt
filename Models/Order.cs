@@ -14,9 +14,10 @@ namespace techtshirt.Models
         public DateTime date_placed { get; set; }
         public DateTime date_shipped { get; set; }
 
-        [ForeignKey("Order")]
-        public int customer_id { get; set; }
 
+        public int customer_id { get; set; }
+        [ForeignKey("customer_id")]
+        public Customer Customer { get; set; }
 
         // customer relationship
 

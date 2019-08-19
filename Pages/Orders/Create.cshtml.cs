@@ -42,7 +42,8 @@ namespace techtshirt.Pages.Orders
             {
                 return Page();
             }
-
+            Console.WriteLine(Order.customer_id);
+            Console.WriteLine("Yo ia ms");
             _context.Order.Add(Order);
             await _context.SaveChangesAsync();
 
