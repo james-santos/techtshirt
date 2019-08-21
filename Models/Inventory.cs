@@ -1,5 +1,5 @@
 using System;
-
+using System.Collections.Generic;
 namespace techtshirt.Models
 {
     // Inventory is configured via OnModelCreating
@@ -15,5 +15,7 @@ namespace techtshirt.Models
         public decimal sale_price { get; set; }
         public int allocated_qty { get; set; }
         public int total_qty { get; set; }
+
+        public ICollection<Order_Inventory> Order_Inventory { get; set; }
     }
 }

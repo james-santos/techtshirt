@@ -19,6 +19,8 @@ namespace techtshirt.Data
 
         public DbSet<Customer> Customer { get; set; }
 
+        public DbSet<Order_Inventory> Order_Inventory { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
