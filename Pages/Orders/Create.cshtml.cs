@@ -22,8 +22,11 @@ namespace techtshirt.Pages.Orders
 
         // this task provides the list of customers for the dropdown select list
         public List<SelectListItem> Options { get; set; }
+        public List<SelectListItem> InvOptions { get; set; }
+
         public async Task<IActionResult> OnGetAsync()
         {
+
             // creates select options drop down razor pages way
             Options = await _context.Customer.Select(a =>
                                   new SelectListItem
@@ -31,23 +34,51 @@ namespace techtshirt.Pages.Orders
                                       Value = a.id.ToString(),
                                       Text =  a.first_name + " " + a.last_name
                                   }).ToListAsync();
+
+            InvOptions = await _context.Inventory.Select(a =>
+                                  new SelectListItem
+                                  {
+                                      Value = a.id.ToString(),
+                                      Text =  a.name
+                                  }).ToListAsync();
+
             return Page();
         }
 
         [BindProperty]
         public Order Order { get; set; }
+        public Order_Inventory Order_Inventory { get; set; }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostOrderAsync()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
+            var quantity = Order_Inventory.quantity;
+            Console.WriteLine(quantity);
+            Console.WriteLine("yoyo");
 
             _context.Order.Add(Order);
-            await _context.SaveChangesAsync();
+            // await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
+        }
+
+        public async Task<IActionResult> OnPostInventoryAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            var quantity = Order_Inventory.quantity;
+            Console.WriteLine(quantity);
+            Console.WriteLine("yoyo");
+
+            // _context.Order.Add(Order);
+            // await _context.SaveChangesAsync();
+
+            return RedirectToPage("");
         }
 
 
