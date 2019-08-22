@@ -47,39 +47,52 @@ namespace techtshirt.Pages.Orders
 
         [BindProperty]
         public Order Order { get; set; }
+
+        [BindProperty]
         public Order_Inventory Order_Inventory { get; set; }
 
+        public List<Order_Inventory> AllItems { get; set; } = new List<Order_Inventory>();
+
+        // most likely push all orderinv in this method when creating order button clicked
         public async Task<IActionResult> OnPostOrderAsync()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            var quantity = Order_Inventory.quantity;
-            Console.WriteLine(quantity);
-            Console.WriteLine("yoyo");
+            // var quantity = Order_Inventory.quantity;
+            // Console.WriteLine(quantity);
+            // Console.WriteLine("yoyo");
 
-            _context.Order.Add(Order);
+            // _context.Order.Add(Order);
             // await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }
 
-        public async Task<IActionResult> OnPostInventoryAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-            var quantity = Order_Inventory.quantity;
-            Console.WriteLine(quantity);
-            Console.WriteLine("yoyo");
+//         public async Task<IActionResult> OnPostInventoryAsync()
+//         {
+//             if (!ModelState.IsValid)
+//             {
+//                 return Page();
+//             }
+// //             AllItems.Add(Order_Inventory);
+// //             foreach (Order_Inventory item in AllItems)
+// // {
+// //                 Console.WriteLine(item.InventoryId);
+// //                 Console.WriteLine(item.order_qty);
 
-            // _context.Order.Add(Order);
-            // await _context.SaveChangesAsync();
+// //                 Console.WriteLine("hey you");
+// //             }
+//             // var quantity = Order_Inventory.quantity;
+//             // Console.WriteLine(quantity);
+//             // Console.WriteLine("yoyo");
 
-            return RedirectToPage("");
-        }
+//             _context.Order_Inventory.Add(Order_Inventory);
+//             // await _context.SaveChangesAsync();
+
+//             return RedirectToPage();
+//         }
 
 
     }
