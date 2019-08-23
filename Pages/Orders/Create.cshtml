@@ -102,15 +102,15 @@
         <table class="table table-striped" id="totalTable">
             <thead>
                 <tr class="titlerow">
-                <th scope="col">Order</th>
+                <th scope="col">Inv Id</th>
                 <th scope="col">Inventory Product</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Item Total</th>
                 </tr>
             </thead>
-            <tbody>
+            <!-- <tbody>
 
-            </tbody>
+            </tbody> -->
             </table>
         </div>
     </div>
@@ -151,32 +151,38 @@
             let finalPrice = orderquantity * delimitedIdPrice[1]
             $("#totalTable").each(function () {
                 var $td = $("<td>", { "class": "pricecol"});
-                let tds = '<tr><td>' + delimitedIdPrice[0] + '. ' + '</td><td>' + product + '</td><td>' + orderquantity + '</td><td>' + finalPrice + '</td></tr>'
+                let tds = '<tr><td>' + delimitedIdPrice[0] + '</td><td>' + product + '</td><td>' + orderquantity + '</td><td>' + finalPrice + '</td></tr>'
+                var $tbody = $("<tbody>");
 
-
-
+                // if tbody does not exist append body with first inventory inputted otherwise insert before the final total row
                 if ($('tbody', this).length > 0) {
-                    $('tbody', this).append(tds);
-                    $('tr:not(".titlerow") td:last-child', this).addClass('pricecol')
+                    // $('tbody', this).append(tds);
+                    $(tds).insertBefore( "#finalTotalRow" );
+                    $('tr:not(".titlerow"):not("#finalTotalRow")  td:last-child', this).addClass('pricecol')
                 } else {
-                    $(this).append(tds);
-                    $('tr:not(".titlerow") td:last-child', this).addClass('pricecol')
+                    $(this).append($tbody);
+                    $('tbody', this).append(tds);
+                    $('tr:not(".titlerow"):not("#finalTotalRow")  td:last-child', this).addClass('pricecol')
                 }
             console.log(calculateTotal())
 
             // calculate finalTotal and add to table at end
             let finalTotal = calculateTotal()
 
-            if($("[id=finalTotal]").length > 0) {
+            if($("[id=finalTotalRow]").length > 0) {
                 //Do Something
                 console.log("the row final total exists")
+                $('#finalTotalRow').html('<td>' + '</td><td>'+ '</td><td>' + 'Order Total' + '</td><td>' + finalTotal + '</td>');
             }
             else{
                 console.log("yo row does not exists")
-                var $totaltr = $("<tr>", { "id": "finalTotal"});
+                var $totaltr = $("<tr>", { "id": "finalTotalRow"});
+                var $tdVal = $("<td>", { "id": "totalVal"});
                 $totaltr.append("<td></td>")
                 $totaltr.append("<td></td>")
                 $totaltr.append("<td>Order Total</td>")
+                // $totaltr.append($tdVal)
+                // $('#totalVal').val("finalTotal");
                 $totaltr.append("<td>" + finalTotal + "</td>")
                 // let finaltd = '<tr><td>' + '</td><td>'+ '</td><td>' + '</td><td>' + finalTotal + '</td></tr>'
                 $('tbody', this).append($totaltr);
