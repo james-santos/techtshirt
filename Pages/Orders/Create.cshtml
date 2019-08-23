@@ -101,11 +101,11 @@
         <div class="table-responsive">
         <table class="table table-striped" id="totalTable">
             <thead>
-                <tr>
+                <tr class="titlerow">
                 <th scope="col">Order</th>
                 <th scope="col">Inventory Product</th>
                 <th scope="col">Quantity</th>
-                <th scope="col">Total Sale Price</th>
+                <th scope="col">Item Total</th>
                 </tr>
             </thead>
             <tbody>
@@ -126,26 +126,70 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
     <script>
-$('#AddObject').click(function () {
-    var invId = $("#invId").val();
-    var orderquantity = $("#orderquantity").val();
-    var product = $("#invId option:selected").text();
-    // for total price need to multiple quantity and price
 
-    $("#totalTable").each(function () {
-        //  var tds = '<tr>';
-        //  jQuery.each($('tr:last td', this), function () {
-        //      tds += '<td>' + product+ '</td>';
-        //  });
-        //  tds += '</tr>';
-         let tds = '<tr><td>' + invId + '. ' + '</td><td>' + product + '</td><td>' + orderquantity + '</td></tr>'
-         if ($('tbody', this).length > 0) {
-             $('tbody', this).append(tds);
-         } else {
-             $(this).append(tds);
-         }
+    function calculateTotal () {
+        var sum = 0;
+        $('.pricecol').each(function() {
+            // sum += parseFloat($(this).val());
+            console.log($(this).text(), 'HI im the cols')
+            let curNum = parseFloat($(this).text());
+             sum += curNum;
+            // var number = parseInt($(this).find('.number').text(), 10);
+            // sum = sum.toFixed(2);
+        });
+        return sum.toFixed(2);
+        }
+
+    $(document).ready(function(){
+        $('#AddObject').click(function () {
+            var splitMe = $("#invId").val();
+            var orderquantity = $("#orderquantity").val();
+            var product = $("#invId option:selected").text();
+            // for total price need to multiple quantity and price
+            var delimitedIdPrice = splitMe.split("|")
+
+            let finalPrice = orderquantity * delimitedIdPrice[1]
+            $("#totalTable").each(function () {
+                var $td = $("<td>", { "class": "pricecol"});
+                let tds = '<tr><td>' + delimitedIdPrice[0] + '. ' + '</td><td>' + product + '</td><td>' + orderquantity + '</td><td>' + finalPrice + '</td></tr>'
+
+
+
+                if ($('tbody', this).length > 0) {
+                    $('tbody', this).append(tds);
+                    $('tr:not(".titlerow") td:last-child', this).addClass('pricecol')
+                } else {
+                    $(this).append(tds);
+                    $('tr:not(".titlerow") td:last-child', this).addClass('pricecol')
+                }
+            console.log(calculateTotal())
+
+            // calculate finalTotal and add to table at end
+            let finalTotal = calculateTotal()
+
+            if($("[id=finalTotal]").length > 0) {
+                //Do Something
+                console.log("the row final total exists")
+            }
+            else{
+                console.log("yo row does not exists")
+                var $totaltr = $("<tr>", { "id": "finalTotal"});
+                $totaltr.append("<td></td>")
+                $totaltr.append("<td></td>")
+                $totaltr.append("<td>Order Total</td>")
+                $totaltr.append("<td>" + finalTotal + "</td>")
+                // let finaltd = '<tr><td>' + '</td><td>'+ '</td><td>' + '</td><td>' + finalTotal + '</td></tr>'
+                $('tbody', this).append($totaltr);
+            }
+
+
+
      });
 });
+
+
+    });
+
 
 </script>
 }
