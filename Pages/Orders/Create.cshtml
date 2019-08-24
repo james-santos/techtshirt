@@ -21,24 +21,25 @@
                     <span asp-validation-for="Order.customer_id" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group row">
+            <!-- <div class="form-group row">
                 <label asp-for="Order.status" class="control-label col-sm-3 col-form-label">Order Status</label>
                 <div class="col-sm-9">
                     <input asp-for="Order.status" class="form-control" />
                     <span asp-validation-for="Order.status" class="text-danger"></span>
                 </div>
-            </div>
+            </div> -->
+            <!-- hidden inputs will be inputted dynamically from the inventory form -->
             <div class="form-group row">
                 <label asp-for="Order.total_sale_price" class="control-label col-sm-3 col-form-label">Total Sale Price</label>
                 <div class="col-sm-9">
-                    <input asp-for="Order.total_sale_price" class="form-control" />
+                    <input type="hidden" asp-for="Order.total_sale_price" class="form-control" />
                     <span asp-validation-for="Order.total_sale_price" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <label asp-for="Order.total_pieces" class="control-label col-sm-3 col-form-label">Total Pieces</label>
                 <div class="col-sm-9">
-                    <input asp-for="Order.total_pieces" class="form-control" />
+                    <input type="hidden"  asp-for="Order.total_pieces" class="form-control" />
                     <span asp-validation-for="Order.total_pieces" class="text-danger"></span>
                 </div>
             </div>
@@ -108,9 +109,7 @@
                 <th scope="col">Item Total</th>
                 </tr>
             </thead>
-            <!-- <tbody>
 
-            </tbody> -->
             </table>
         </div>
     </div>
@@ -127,7 +126,7 @@
 
     <script>
 
-    function calculateTotal () {
+    function calculatePriceTotal () {
         var sum = 0;
         $('.pricecol').each(function() {
             // sum += parseFloat($(this).val());
@@ -137,7 +136,19 @@
             // var number = parseInt($(this).find('.number').text(), 10);
             // sum = sum.toFixed(2);
         });
+
         return sum.toFixed(2);
+        }
+    function calculateQuantityTotal () {
+        var sum = 0;
+        $('.quantitycol').each(function() {
+            // sum += parseFloat($(this).val());
+            console.log($(this).text(), 'HI im the cols')
+            let curNum = parseInt($(this).text());
+             sum += curNum;
+        });
+
+        return sum;
         }
 
     $(document).ready(function(){
@@ -150,44 +161,56 @@
 
             let finalPrice = orderquantity * delimitedIdPrice[1]
             $("#totalTable").each(function () {
-                var $td = $("<td>", { "class": "pricecol"});
                 let tds = '<tr><td>' + delimitedIdPrice[0] + '</td><td>' + product + '</td><td>' + orderquantity + '</td><td>' + finalPrice + '</td></tr>'
                 var $tbody = $("<tbody>");
 
-                // if tbody does not exist append body with first inventory inputted otherwise insert before the final total row
+                // if tbody does not exist append body with first inventory inputted otherwise insert before the final total row and adds pricecol class to last child td and quantitycol to 2nd to last
                 if ($('tbody', this).length > 0) {
                     // $('tbody', this).append(tds);
                     $(tds).insertBefore( "#finalTotalRow" );
                     $('tr:not(".titlerow"):not("#finalTotalRow")  td:last-child', this).addClass('pricecol')
+                     $('tr:not(".titlerow"):not("#finalTotalRow")  td:nth-last-child(2)', this).addClass('quantitycol')
                 } else {
                     $(this).append($tbody);
                     $('tbody', this).append(tds);
                     $('tr:not(".titlerow"):not("#finalTotalRow")  td:last-child', this).addClass('pricecol')
+                    $('tr:not(".titlerow"):not("#finalTotalRow")  td:nth-last-child(2)', this).addClass('quantitycol')
                 }
-            console.log(calculateTotal())
+            console.log(calculatePriceTotal())
 
             // calculate finalTotal and add to table at end
-            let finalTotal = calculateTotal()
+            let finalTotal = calculatePriceTotal()
+            let finalQuantity = calculateQuantityTotal()
 
             if($("[id=finalTotalRow]").length > 0) {
-                //Do Something
                 console.log("the row final total exists")
                 $('#finalTotalRow').html('<td>' + '</td><td>'+ '</td><td>' + 'Order Total' + '</td><td>' + finalTotal + '</td>');
+
+                $('#finalTotalRow td:last-child', this).attr("name", "Order_total_sale_price");
+                $('#finalTotalRow td:last-child', this).attr("value", finalTotal);
+
+                // updates to final totals
+                $( "#Order_total_sale_price" ).attr("value",finalTotal);
+                $( "#Order_total_pieces" ).attr("value",finalQuantity);
             }
             else{
                 console.log("yo row does not exists")
                 var $totaltr = $("<tr>", { "id": "finalTotalRow"});
-                var $tdVal = $("<td>", { "id": "totalVal"});
+                var $tdVal = $("<td>", { "name": "Order_total_sale_price"});
                 $totaltr.append("<td></td>")
                 $totaltr.append("<td></td>")
                 $totaltr.append("<td>Order Total</td>")
-                // $totaltr.append($tdVal)
-                // $('#totalVal').val("finalTotal");
-                $totaltr.append("<td>" + finalTotal + "</td>")
-                // let finaltd = '<tr><td>' + '</td><td>'+ '</td><td>' + '</td><td>' + finalTotal + '</td></tr>'
-                $('tbody', this).append($totaltr);
-            }
 
+                $tdVal.append(finalTotal)
+
+                $totaltr.append($tdVal)
+
+                $('tbody', this).append($totaltr);
+
+                // Updates the model binded input with the final total so it can be used in post
+                $( "#Order_total_sale_price" ).attr("value", finalTotal);
+                $( "#Order_total_pieces" ).attr("value", finalQuantity);
+            }
 
 
      });

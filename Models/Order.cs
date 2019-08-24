@@ -12,12 +12,12 @@ namespace techtshirt.Models
         public decimal total_sale_price { get; set; }
         public int total_pieces { get; set; }
         public string reference_code { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
+        // [DataType(DataType.Date)]
+        // [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime date_placed { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
+        // [DataType(DataType.Date)]
+        // [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime date_shipped { get; set; }
 
 
