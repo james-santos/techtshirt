@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using techtshirt.Data;
 using techtshirt.Models;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace techtshirt.Pages.Orders
 {
@@ -54,27 +56,93 @@ namespace techtshirt.Pages.Orders
         // most likely push all orderinv in this method when creating order button clicked
         public async Task<IActionResult> OnPostOrderAsync()
         {
-            if (!ModelState.IsValid)
+            // if (!ModelState.IsValid)
+            // {
+            //     return Page();
+            // }
+
+            // Console.WriteLine("better have a value twice");
+            // Console.WriteLine(Order.customer_id);
+            // // set Order_Inventory status and ORder status to approved
+            // Order.status = "Approved";
+
+            // int idcon = Order.customer_id;
+            // var curCustomer = _context.Customer.Find(idcon);
+            // Console.WriteLine(curCustomer);
+            // Console.WriteLine(curCustomer.first_name);
+            // // create order
+            // Order.customer_id = curCustomer.id;
+            // Order.Customer = curCustomer;
+            // _context.Order.Add(Order);
+            // await _context.SaveChangesAsync();
+
+
+            // create order_inventory here with list of inventory
+            // var curOrder = _context.Order.Where(a => a.reference_code == Order.reference_code).Single();
+
+            // this block will read the json data from ajax
             {
-                return Page();
+                MemoryStream stream = new MemoryStream();
+                Request.Body.CopyTo(stream);
+                stream.Position = 0;
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    string requestBody = reader.ReadToEnd();
+                    if(requestBody.Length > 0)
+                    {
+                        Console.WriteLine(requestBody);
+                        var obj = JsonConvert.DeserializeObject<RootObject>(requestBody);
+                        if(obj != null)
+                        {
+                                // inilize order object once here
+                                Order.total_sale_price = obj.order.total_sale_price;
+                                Order.status = "Approved";
+                                Order.total_pieces = obj.order.total_pieces;
+                                Order.reference_code = obj.order.reference_code;
+                                Order.date_placed = obj.order.date_placed;
+                                Order.date_shipped = obj.order.date_shipped;
+                                Order.customer_id = obj.order.customer_id;
+                                var curCustomer = _context.Customer.Find(Order.customer_id);
+
+                                Console.WriteLine(curCustomer);
+                                Console.WriteLine(curCustomer.first_name);
+                                // create order
+                                Order.customer_id = curCustomer.id;
+                                // Order.Customer = curCustomer;
+                                _context.Order.Add(Order);
+                                await _context.SaveChangesAsync();
+
+                            foreach(InventoryDto dto in obj.data)
+                            {
+                                Order_Inventory.OrderId = Order.id;
+                                Order_Inventory.InventoryId = dto.invId;
+                                Order_Inventory.order_qty = dto.quantity;
+                                Order_Inventory.total_sale_price = dto.itemtotal;
+                                _context.Order_Inventory.Add(Order_Inventory);
+                            }
+                            await _context.SaveChangesAsync();
+                        }
+                    }
+                }
             }
-
-            Console.WriteLine(Order.total_sale_price);
-            Console.WriteLine("total price");
-
-            // set Order_Inventory status and ORder status to approved
-            Order.status = "Approved";
-            // var quantity = Order_Inventory.quantity;
-            // Console.WriteLine(quantity);
-            // Console.WriteLine("yoyo");
-
-            _context.Order.Add(Order);
-            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }
 
+        // data transfer object of the json from ajax order post
+        public class InventoryDto
+        {
+            public int invId {get; set;}
+            public string product { get; set; }
+            public int quantity { get; set; }
+            public decimal itemtotal { get; set; }
+        }
 
+        public class RootObject
+        {
+            public List<InventoryDto> data { get; set; }
+            public Order order { get; set;}
+        }
 
 
     }
