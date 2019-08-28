@@ -1,3 +1,12 @@
 #totalTable > tbody > tr > td, #totalTable > thead> .titlerow > th{
   border: none;
 }
+
+
+table.table.table-bordered {
+  border: 1px solid grey;
+}
+
+.heading-level-2{
+  color: grey;
+}

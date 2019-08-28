@@ -99,10 +99,11 @@
         <table class="table table-striped table-bordered" id="totalTable">
             <thead>
                 <tr class="titlerow">
-                <th scope="col">Inv Id</th>
+                <!-- <th scope="col">Inv Id</th>
                 <th scope="col">Inventory Product</th>
                 <th scope="col">Quantity</th>
-                <th scope="col">Item Total</th>
+                <th scope="col">Item Total</th> -->
+                <p class="empty">No order items to display.</p>
                 </tr>
             </thead>
 
@@ -153,6 +154,12 @@
         }
 
     $(document).ready(function(){
+
+
+         if($('tbody').length == 0) {
+             console.log("Butt Hash")
+            }
+
         $('#AddObject').click(function () {
             var splitMe = $("#invId").val();
             var orderquantity = $("#orderquantity").val();
@@ -164,6 +171,7 @@
             $("#totalTable").each(function () {
                 let tds = '<tr><td>' + delimitedIdPrice[0] + '</td><td>' + product + '</td><td>' + orderquantity + '</td><td>' + finalPrice + '</td></tr>'
                 var $tbody = $("<tbody>");
+                let ths = '<th>Inv Id</th><th>Inventory Product</th><th>Quantity</th><th>Item Total</th>'
 
                 // if tbody does not exist append body with first inventory inputted otherwise insert before the final total row and adds pricecol class to last child td and quantitycol to 2nd to last
                 if ($('tbody', this).length > 0) {
@@ -172,14 +180,19 @@
                     $('tr:not(".titlerow"):not("#finalTotalRow")  td:last-child', this).addClass('pricecol')
                      $('tr:not(".titlerow"):not("#finalTotalRow")  td:nth-last-child(2)', this).addClass('quantitycol')
                 } else {
+                    // insert the thead columns
+                    $('.empty').remove();
+                    $('.titlerow', this).append(ths);
+
+
                     $(this).append($tbody);
                     $('tbody', this).append(tds);
                     $('tr:not(".titlerow"):not("#finalTotalRow")  td:last-child', this).addClass('pricecol')
                     $('tr:not(".titlerow"):not("#finalTotalRow")  td:nth-last-child(2)', this).addClass('quantitycol')
                 }
-            // console.log(calculatePriceTotal())
 
-            // calculate finalTotal and add to table at end
+
+            // calculate finalTotal and add to table at end and finalTotal workflow begins here
             let finalTotal = calculatePriceTotal()
             let finalQuantity = calculateQuantityTotal()
 
@@ -216,6 +229,7 @@
 });
 
 
+        // post for order customer relationships begin here using ajax
         $('#postRelations').click(function () {
             // Grab the information needed to update loads data for ajax call
             var invDto = []
