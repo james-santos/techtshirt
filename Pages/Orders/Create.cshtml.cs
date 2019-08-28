@@ -54,31 +54,13 @@ namespace techtshirt.Pages.Orders
         public Order_Inventory Order_Inventory { get; set; }
 
         // most likely push all orderinv in this method when creating order button clicked
+        // this is an Ajax only post request not model binding
         public async Task<IActionResult> OnPostOrderAsync()
         {
             // if (!ModelState.IsValid)
             // {
             //     return Page();
             // }
-
-            // Console.WriteLine("better have a value twice");
-            // Console.WriteLine(Order.customer_id);
-            // // set Order_Inventory status and ORder status to approved
-            // Order.status = "Approved";
-
-            // int idcon = Order.customer_id;
-            // var curCustomer = _context.Customer.Find(idcon);
-            // Console.WriteLine(curCustomer);
-            // Console.WriteLine(curCustomer.first_name);
-            // // create order
-            // Order.customer_id = curCustomer.id;
-            // Order.Customer = curCustomer;
-            // _context.Order.Add(Order);
-            // await _context.SaveChangesAsync();
-
-
-            // create order_inventory here with list of inventory
-            // var curOrder = _context.Order.Where(a => a.reference_code == Order.reference_code).Single();
 
             // this block will read the json data from ajax
             {

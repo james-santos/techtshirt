@@ -1,0 +1,3 @@
+#totalTable > tbody > tr > td, #totalTable > thead> .titlerow > th{
+  border: none;
+}
