@@ -5,14 +5,11 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create Order</h1>
-
-<h4>Order</h4>
-<hr />
+<h3 class="heading-level-2">Create Order</h3>
 <div class="row">
     <div class="col-md-9">
        <!-- Main order form starts here -->
-        <form method="post">
+        <form method="post" class="border rounded p-2">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group row">
                 <label asp-for="Order.customer_id" class="control-label col-sm-3  col-form-label">Customers</label>
@@ -67,11 +64,12 @@
                 </div>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create"  id="postRelations" class="btn btn-primary" />
+                <input type="submit" value="Create"  id="postRelations" class="btn btn-secondary btn-block" />
             </div>
         </form>
         <!-- Inventory product form -->
-        <form>
+        <h3 class="heading-level-2">Add Inventory Item</h3>
+        <form class="border rounded p-2">
             <div class="form-group row">
                 <label asp-for="Order_Inventory.InventoryId" class="control-label col-sm-3  col-form-label">Inventory Product</label>
                 <div class="col-sm-9">
@@ -87,22 +85,18 @@
                 </div>
             </div>
             <div class="form-group">
-                <input type="button" id="AddObject" value="Add Product"  class="btn btn-primary" />
+                <input type="button" id="AddObject" value="Add Product"  class="btn btn-secondary btn-block" />
             </div>
         </form>
 
     </div>
     <div class="col-md-12">
             <!-- product totals table -->
-        <h2 class="heading-level-2">Order Items</h2>
+        <h3 class="heading-level-2">Order Items</h3>
         <div class="table-responsive">
-        <table class="table table-striped table-bordered" id="totalTable">
+        <table class="table table-striped border rounded" id="totalTable">
             <thead>
                 <tr class="titlerow">
-                <!-- <th scope="col">Inv Id</th>
-                <th scope="col">Inventory Product</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Item Total</th> -->
                 <p class="empty">No order items to display.</p>
                 </tr>
             </thead>
@@ -154,11 +148,6 @@
         }
 
     $(document).ready(function(){
-
-
-         if($('tbody').length == 0) {
-             console.log("Butt Hash")
-            }
 
         $('#AddObject').click(function () {
             var splitMe = $("#invId").val();

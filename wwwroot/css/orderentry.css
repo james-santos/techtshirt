@@ -3,10 +3,13 @@
 }
 
 
-table.table.table-bordered {
+/* table.table.table-bordered {
   border: 1px solid grey;
-}
+} */
 
 .heading-level-2{
   color: grey;
 }
+/* .row > div > form {
+  border: 1px solid grey;
+} */
