@@ -138,7 +138,7 @@
     function calculateQuantityTotal () {
         var sum = 0;
         $('.quantitycol').each(function() {
-            // sum += parseFloat($(this).val());
+
             console.log($(this).text(), 'HI im the cols')
             let curNum = parseInt($(this).text());
              sum += curNum;
@@ -155,66 +155,88 @@
             var product = $("#invId option:selected").text();
             // for total price need to multiple quantity and price
             var delimitedIdPrice = splitMe.split("|")
-
             let finalPrice = orderquantity * delimitedIdPrice[1]
-            $("#totalTable").each(function () {
-                let tds = '<tr><td>' + delimitedIdPrice[0] + '</td><td>' + product + '</td><td>' + orderquantity + '</td><td>' + finalPrice + '</td></tr>'
-                var $tbody = $("<tbody>");
-                let ths = '<th>Inv Id</th><th>Inventory Product</th><th>Quantity</th><th>Item Total</th>'
 
-                // if tbody does not exist append body with first inventory inputted otherwise insert before the final total row and adds pricecol class to last child td and quantitycol to 2nd to last
-                if ($('tbody', this).length > 0) {
+            // for all the values if the item exists update the value else go to the add new row path
+            if ($(`.invId:contains(${delimitedIdPrice[0]})`).length > 0)
+            {
 
-                    $(tds).insertBefore( "#finalTotalRow" );
-                    $('tr:not(".titlerow"):not("#finalTotalRow")  td:last-child', this).addClass('pricecol')
-                     $('tr:not(".titlerow"):not("#finalTotalRow")  td:nth-last-child(2)', this).addClass('quantitycol')
-                } else {
-                    // insert the thead columns
-                    $('.empty').remove();
-                    $('.titlerow', this).append(ths);
+                let addedQuantity = parseInt(orderquantity) + parseInt($(`.invId:contains(${delimitedIdPrice[0]})`).siblings('.quantitycol').text())
+                console.log(addedQuantity,'im quan')
+                let addedPrice = parseFloat(finalPrice) + parseFloat($(`.invId:contains(${delimitedIdPrice[0]})`).siblings('.pricecol').text())
+                $(`.invId:contains(${delimitedIdPrice[0]})`).siblings('.quantitycol').html(addedQuantity)
+                $(`.invId:contains(${delimitedIdPrice[0]})`).siblings('.pricecol').html(addedPrice)
 
+            }
+                $("#totalTable").each(function () {
+                    let tds = '<tr><td>' + delimitedIdPrice[0] + '</td><td>' + product + '</td><td>' + orderquantity + '</td><td>' + finalPrice + '</td></tr>'
+                    var $tbody = $("<tbody>");
+                    let ths = '<th>Inv Id</th><th>Inventory Product</th><th>Quantity</th><th>Item Total</th>'
 
-                    $(this).append($tbody);
-                    $('tbody', this).append(tds);
-                    $('tr:not(".titlerow"):not("#finalTotalRow")  td:last-child', this).addClass('pricecol')
-                    $('tr:not(".titlerow"):not("#finalTotalRow")  td:nth-last-child(2)', this).addClass('quantitycol')
+                    if ($(`.invId:contains(${delimitedIdPrice[0]})`).length > 0)
+                    {
+
+                        let addedQuantity = parseInt(orderquantity) + parseInt($(`.invId:contains(${delimitedIdPrice[0]})`).siblings('.quantitycol').text())
+                        let addedPrice = parseFloat(finalPrice) + parseFloat($(`.invId:contains(${delimitedIdPrice[0]})`).siblings('.pricecol').text())
+                        $(`.invId:contains(${delimitedIdPrice[0]})`).siblings('.quantitycol').val(addedQuantity)
+                        $(`.invId:contains(${delimitedIdPrice[0]})`).siblings('.pricecol').val(addedPrice)
+
+                    }
+                    else{
+                    // if tbody does not exist append body with first inventory inputted otherwise insert before the final total row and adds pricecol class to last child td and quantitycol to 2nd to last and invId to first child
+                        if ($('tbody', this).length > 0) {
+
+                            $(tds).insertBefore( "#finalTotalRow" );
+                            $('tr:not(".titlerow"):not("#finalTotalRow")  td:last-child', this).addClass('pricecol')
+                            $('tr:not(".titlerow"):not("#finalTotalRow")  td:first-child', this).addClass('invId')
+                            $('tr:not(".titlerow"):not("#finalTotalRow")  td:nth-last-child(2)', this).addClass('quantitycol')
+                        } else {
+                            // insert the thead columns
+                            $('.empty').remove();
+                            $('.titlerow', this).append(ths);
+
+                            $(this).append($tbody);
+                            $('tbody', this).append(tds);
+                            $('tr:not(".titlerow"):not("#finalTotalRow")  td:last-child', this).addClass('pricecol')
+                            $('tr:not(".titlerow"):not("#finalTotalRow")  td:first-child', this).addClass('invId')
+                            $('tr:not(".titlerow"):not("#finalTotalRow")  td:nth-last-child(2)', this).addClass('quantitycol')
+                            }
+                    }
+
+                // calculate finalTotal and add to table at end and finalTotal workflow begins here
+                let finalTotal = calculatePriceTotal()
+                let finalQuantity = calculateQuantityTotal()
+
+                if($("[id=finalTotalRow]").length > 0) {
+                    $('#finalTotalRow').html('<td>' + '</td><td>'+ '</td><td>' + 'Order Total' + '</td><td>' + finalTotal + '</td>');
+
+                    $('#finalTotalRow td:last-child', this).attr("name", "Order_total_sale_price");
+                    $('#finalTotalRow td:last-child', this).attr("value", finalTotal);
+
+                    // updates to final totals
+                    $( "#Order_total_sale_price" ).attr("value",finalTotal);
+                    $( "#Order_total_pieces" ).attr("value",finalQuantity);
                 }
+                else{
+                    var $totaltr = $("<tr>", { "id": "finalTotalRow"});
+                    var $tdVal = $("<td>", { "name": "Order_total_sale_price"});
+                    $totaltr.append("<td></td>")
+                    $totaltr.append("<td></td>")
+                    $totaltr.append("<td>Order Total</td>")
+
+                    $tdVal.append(finalTotal)
+
+                    $totaltr.append($tdVal)
+
+                    $('tbody', this).append($totaltr);
+
+                    // Updates the model binded input with the final total so it can be used in post
+                    $( "#Order_total_sale_price" ).attr("value", finalTotal);
+                    $( "#Order_total_pieces" ).attr("value", finalQuantity);
+                }
+        });
 
 
-            // calculate finalTotal and add to table at end and finalTotal workflow begins here
-            let finalTotal = calculatePriceTotal()
-            let finalQuantity = calculateQuantityTotal()
-
-            if($("[id=finalTotalRow]").length > 0) {
-                // console.log("the row final total exists")
-                $('#finalTotalRow').html('<td>' + '</td><td>'+ '</td><td>' + 'Order Total' + '</td><td>' + finalTotal + '</td>');
-
-                $('#finalTotalRow td:last-child', this).attr("name", "Order_total_sale_price");
-                $('#finalTotalRow td:last-child', this).attr("value", finalTotal);
-
-                // updates to final totals
-                $( "#Order_total_sale_price" ).attr("value",finalTotal);
-                $( "#Order_total_pieces" ).attr("value",finalQuantity);
-            }
-            else{
-                // console.log("yo row does not exists")
-                var $totaltr = $("<tr>", { "id": "finalTotalRow"});
-                var $tdVal = $("<td>", { "name": "Order_total_sale_price"});
-                $totaltr.append("<td></td>")
-                $totaltr.append("<td></td>")
-                $totaltr.append("<td>Order Total</td>")
-
-                $tdVal.append(finalTotal)
-
-                $totaltr.append($tdVal)
-
-                $('tbody', this).append($totaltr);
-
-                // Updates the model binded input with the final total so it can be used in post
-                $( "#Order_total_sale_price" ).attr("value", finalTotal);
-                $( "#Order_total_pieces" ).attr("value", finalQuantity);
-            }
-     });
 });
 
 
@@ -250,16 +272,13 @@
                     console.log(index, $(this).text(), 'i am current td')
                     switch(index) {
                         case 0:
-                        //execute code block 1
                             obj["invId"] = $(this).text();
                         case 1:
-                        //execute code block 2
+
                             obj["product"] = $(this).text();
                         case 2:
-                        //execute code block 2
                             obj["quantity"] = $(this).text();
                         case 3:
-                        //execute code block 2
                             obj["itemtotal"] = $(this).text();
                         default:
                         // code to be executed if n is different from case 1 and 2
@@ -274,8 +293,6 @@
             });
 
             console.log(invDto, 'final list')
-
-            // Let's edit the description!
             $.ajax({
                 type: "POST",
                 url: "/Orders/Create?handler=Order", // the method we are calling
@@ -288,7 +305,6 @@
                 dataType: "json",
                 success: function (result) {
                     alert('Yay! It worked!');
-                    // Or if you are returning something
                     alert('I returned... ');
                 },
                 failure: function (response) {
