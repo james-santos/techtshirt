@@ -96,14 +96,20 @@ namespace techtshirt.Pages.Orders
 
                             foreach(InventoryDto dto in obj.data)
                             {
-                                Order_Inventory.OrderId = Order.id;
-                                Order_Inventory.InventoryId = dto.invId;
-                                Order_Inventory.order_qty = dto.quantity;
-                                Order_Inventory.total_sale_price = dto.itemtotal;
-                                _context.Order_Inventory.Add(Order_Inventory);
+                                // Order_Inventory.OrderId = Order.id;
+                                // Order_Inventory.InventoryId = dto.invId;
+                                // Order_Inventory.order_qty = dto.quantity;
+                                // Order_Inventory.total_sale_price = dto.itemtotal;
+                                _context.Order_Inventory.Add(new Order_Inventory{
+                                                                OrderId = Order.id,
+                                                                InventoryId = dto.invId,
+                                                                order_qty = dto.quantity,
+                                                                total_sale_price = dto.itemtotal});
+
                             }
-                            await _context.SaveChangesAsync();
+
                         }
+                        await _context.SaveChangesAsync();
                     }
                 }
             }
