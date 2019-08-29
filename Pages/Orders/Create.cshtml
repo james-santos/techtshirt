@@ -230,7 +230,7 @@
 
 
         // post for order customer relationships begin here using ajax
-        $('#postRelations').click(function () {
+        $('#postRelations').click(function (ev) {
             // Grab the information needed to update loads data for ajax call
             var invDto = []
 
@@ -285,23 +285,27 @@
             $.ajax({
                 type: "POST",
                 url: "/Orders/Create?handler=Order", // the method we are calling
+
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader("XSRF-TOKEN",
                         $('input:hidden[name="__RequestVerificationToken"]').val());
                 },
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({ data: invDto, order: ordModel }),
-                dataType: "json",
-                success: function (result) {
-                    alert('Yay! It worked!');
-                    alert('I returned... ');
+                // dataType: "json",
+                success: function (response) {
+                    window.location.href = "https://localhost:5001/Orders/";
                 },
-                failure: function (response) {
-                    alert(response);
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log(xhr)
+                    alert(xhr.status);
+                    alert(thrownError);
                 }
             });
+             ev.preventDefault();
 
         });
+
 
 
     });

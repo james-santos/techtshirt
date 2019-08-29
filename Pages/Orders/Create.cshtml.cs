@@ -109,11 +109,11 @@ namespace techtshirt.Pages.Orders
                             }
 
                         }
-                        await _context.SaveChangesAsync();
+                        // await _context.SaveChangesAsync();
                     }
                 }
             }
-
+            await _context.SaveChangesAsync();
             return RedirectToPage("./Index");
         }
 
