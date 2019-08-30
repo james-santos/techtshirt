@@ -5,7 +5,9 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>
+    Order: @Html.DisplayFor(model => model.Order.id)
+</h1>
 
 <div>
     <h4>Order</h4>
@@ -55,6 +57,40 @@
         </dd>
     </dl>
 </div>
+
+ <div class="row">
+    <div class="col-sm">
+        <ul class="list-group list-group-flush">
+            <h5>Overview</h5>
+            <li class="list-group-item">Order Type: Sales Order
+            </li>
+            <li class="list-group-item">Status: @Html.DisplayFor(model => model.Order.status)
+            </li>
+            <li class="list-group-item">Date Ordered: @Html.DisplayFor(model => model.Order.date_placed)
+            </li>
+            <li class="list-group-item">Product Store: </li>
+            <li class="list-group-item">Priority: Normal</li>
+            <li class="list-group-item">Invoice Per Shipment: N/A</li>
+        </ul>
+    </div>
+    <div class="col-sm">
+        <ul class="list-group list-group-flush">
+            <h5>Contact Information</h5>
+            <li class="list-group-item">Name: </li>
+            <li class="list-group-item">Order Notification Email Address: johnwickgmail.com</li>
+            <li class="list-group-item">Shipping Destination Address: </li>
+        </ul>
+    </div>
+    <div class="col-sm">
+        <ul class="list-group list-group-flush">
+            <h5>Payment Information</h5>
+            <li class="list-group-item">Status History: Not-Received</li>
+            <li class="list-group-item">Cash On Delivery: @Html.DisplayFor(model => model.Order.total_sale_price)
+            </li>
+        </ul>
+    </div>
+  </div>
+
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Order.id">Edit</a> |
     <a asp-page="./Index">Back to List</a>

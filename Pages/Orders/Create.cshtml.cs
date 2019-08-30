@@ -100,9 +100,14 @@ namespace techtshirt.Pages.Orders
                                 // Order_Inventory.InventoryId = dto.invId;
                                 // Order_Inventory.order_qty = dto.quantity;
                                 // Order_Inventory.total_sale_price = dto.itemtotal;
+                                var curOrder = _context.Order.Find(Order.id);
+                                var curInventory = _context.Inventory.Find(dto.invId);
+
                                 _context.Order_Inventory.Add(new Order_Inventory{
                                                                 OrderId = Order.id,
+                                                                Order = curOrder,
                                                                 InventoryId = dto.invId,
+                                                                Inventory = curInventory,
                                                                 order_qty = dto.quantity,
                                                                 total_sale_price = dto.itemtotal});
 

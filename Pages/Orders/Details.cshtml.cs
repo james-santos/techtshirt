@@ -29,6 +29,10 @@ namespace techtshirt.Pages.Orders
             }
 
             Order = await _context.Order.FirstOrDefaultAsync(m => m.id == id);
+            // Order = await _context.Order.FirstOrDefaultAsync(m => m.id == id)
+            //                             .Include(c => c.Customer)
+            //                             .AsNoTracking()
+            //                             .ToListAsync();
 
             if (Order == null)
             {
