@@ -90,7 +90,7 @@ namespace techtshirt.Pages.Orders
                                 Console.WriteLine(curCustomer.first_name);
                                 // create order
                                 Order.customer_id = curCustomer.id;
-                                // Order.Customer = curCustomer;
+                                Order.Customer = curCustomer;
                                 _context.Order.Add(Order);
                                 await _context.SaveChangesAsync();
 

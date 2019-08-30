@@ -23,7 +23,11 @@ namespace techtshirt.Pages.Orders
 
         public async Task OnGetAsync()
         {
-            Order = await _context.Order.ToListAsync();
+            Order = await _context.Order.Include(c => c.Customer)
+                                        .AsNoTracking()
+                                        .ToListAsync();
+            // Order = await _context.Order
+            //                             .ToListAsync();
         }
     }
 }
