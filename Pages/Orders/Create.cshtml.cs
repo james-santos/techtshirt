@@ -40,7 +40,7 @@ namespace techtshirt.Pages.Orders
             InvOptions = await _context.Inventory.Select(a =>
                                   new SelectListItem
                                   {
-                                      Value = a.id.ToString() + "|" + a.cost,
+                                      Value = a.id.ToString() + "|" + a.sale_price,
                                       Text =  a.name
                                   }).ToListAsync();
 

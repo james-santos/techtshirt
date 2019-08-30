@@ -76,7 +76,9 @@
     <div class="col-sm">
         <ul class="list-group list-group-flush">
             <h5>Contact Information</h5>
-            <li class="list-group-item">Name: </li>
+            <li class="list-group-item">
+                Name: @Html.DisplayFor(model => model.Order.Customer.first_name) @Html.DisplayFor(model => model.Order.Customer.last_name)
+            </li>
             <li class="list-group-item">Order Notification Email Address: johnwickgmail.com</li>
             <li class="list-group-item">Shipping Destination Address: </li>
         </ul>
@@ -90,6 +92,50 @@
         </ul>
     </div>
   </div>
+
+  <div class="row">
+      <div class="col-md-12">
+            <!-- product totals table -->
+        <h3 class="heading-level-2">Order Items</h3>
+        <div class="table-responsive">
+        <table class="table table-sm table-striped border rounded" id="totalTable">
+            <thead>
+                <tr class="titlerow">
+                    <th>Inv Id</th>
+                    <th>Inventory Product</th>
+                    <th>Quantity</th>
+                    <th>Unit Total</th>
+                    <th>Sub Total</th>
+                </tr>
+            </thead>
+            <tbody>
+             @foreach (var item in Model.Order.Order_Inventory)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.InventoryId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Inventory.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.order_qty)
+                        </td>
+                        <td>
+                            $@Html.DisplayFor(modelItem => item.Inventory.sale_price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.total_sale_price)
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+
+            </table>
+        </div>
+    </div>
+  </div
 
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Order.id">Edit</a> |
