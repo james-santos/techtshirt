@@ -94,7 +94,7 @@
             <!-- product totals table -->
         <h3 class="heading-level-2">Order Items</h3>
         <div class="table-responsive">
-        <table class="table table-striped border rounded" id="totalTable">
+        <table class="table table-sm table-striped border rounded" id="totalTable">
             <thead>
                 <tr class="titlerow">
                 <td class="empty">No order items to display.</td>
@@ -197,7 +197,7 @@
                 let finalQuantity = calculateQuantityTotal()
 
                 if($("[id=finalTotalRow]").length > 0) {
-                    $('#finalTotalRow').html('<td>' + '</td><td>'+ '</td><td>' + 'Order Total' + '</td><td>' + finalTotal + '</td>');
+                    $('#finalTotalRow').html('<td>' + '</td><td>'+ '</td><td>' + 'Cart Total' + '</td><td>' + finalTotal + '</td>');
 
                     $('#finalTotalRow td:last-child', this).attr("name", "Order_total_sale_price");
                     $('#finalTotalRow td:last-child', this).attr("value", finalTotal);
@@ -211,7 +211,7 @@
                     var $tdVal = $("<td>", { "name": "Order_total_sale_price"});
                     $totaltr.append("<td></td>")
                     $totaltr.append("<td></td>")
-                    $totaltr.append("<td>Order Total</td>")
+                    $totaltr.append("<td>Cart Total</td>")
 
                     $tdVal.append(finalTotal)
 
