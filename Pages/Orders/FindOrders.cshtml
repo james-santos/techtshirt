@@ -1,0 +1,52 @@
+@page
+@model techtshirt.Pages.Orders.FindOrdersModel
+
+@{
+    ViewData["Title"] = "FindOrders";
+}
+
+<h1>Find Orders</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-9">
+     <form class="borderless p-2 mb-5">
+        <div class="form-group row">
+                <label class="control-label col-sm-3  col-form-label">Order ID</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="findid" >
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="button" id="hit" value="Find"  class="btn btn-success btn-block" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <script>
+        $(document).ready(function() {
+            // this will redirect to correct orders details page
+            $('#findid').keypress(function (e) {
+                var key = e.which;
+                if(key == 13)  // the enter key code
+                {
+                    $('#hit').click();
+                    return false;
+                }
+            });
+
+            $('#hit').click(function() {
+                window.location.href = `https://localhost:5001/Orders/Details?id=${$('#findid').val()}`;
+            });
+        });
+    </script>
+}

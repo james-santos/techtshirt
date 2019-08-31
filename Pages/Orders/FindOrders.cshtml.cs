@@ -10,11 +10,11 @@ using techtshirt.Models;
 
 namespace techtshirt.Pages.Orders
 {
-    public class IndexModel : PageModel
+    public class FindOrdersModel : PageModel
     {
         private readonly techtshirt.Data.techtshirtContext _context;
 
-        public IndexModel(techtshirt.Data.techtshirtContext context)
+        public FindOrdersModel(techtshirt.Data.techtshirtContext context)
         {
             _context = context;
         }
@@ -23,10 +23,8 @@ namespace techtshirt.Pages.Orders
 
         public async Task OnGetAsync()
         {
-            Order = await _context.Order.Include(c => c.Customer)
-                                        .AsNoTracking()
+            Order = await _context.Order.AsNoTracking()
                                         .ToListAsync();
-
         }
     }
 }
