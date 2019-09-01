@@ -70,7 +70,9 @@ body {
 	color: #333;
 }
 
-
+.heading-level-2{
+  color: grey;
+}
 
 /* .sticky-top {
 	position: -webkit-sticky;
