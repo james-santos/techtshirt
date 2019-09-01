@@ -1,0 +1,114 @@
+@page
+@model techtshirt.Pages.Dashboard.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div>
+    <h2 class="heading-level-2">Order Manager</h2>
+    <div class="row">
+        <div class="col-sm">
+            <h5>Orders Placed From Last 30 Days</h5>
+            <table class="table table-sm border rounded">
+                <thead>
+                <tr>
+                    <th>
+                        Order ID
+                    </th>
+                    <th>
+                        Customer
+                    </th>
+                    <th>
+                        Total Pieces
+                    </th>
+                    <th>
+                        Amount
+                    </th>
+                    <th>
+                        Order Status
+                    </th>
+
+                    <th>
+                        Ref Code
+                    </th>
+                </tr>
+            </thead>
+                <tbody>
+            @foreach (var item in Model.PrevOrders) {
+                    <tr>
+                        <td>
+                            <a asp-page="./Details" asp-route-id="@item.id">@Html.DisplayFor(modelItem => item.id)</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Customer.first_name)  @Html.DisplayFor(modelItem => item.Customer.last_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.total_pieces)
+                        </td>
+                        <td>
+                            $@Html.DisplayFor(modelItem => item.total_sale_price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.reference_code)
+                        </td>
+                    </tr>
+            }
+            <tbody>
+            </table>
+        </div>
+        <div class="col-sm">
+            <div id="container" style="width:100%; height:400px;">
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+
+        var sourcearray = JSON.parse('@Html.Raw(Json.Serialize(Model.Order_Inventory))');
+        var inventoryarray = JSON.parse('@Html.Raw(Json.Serialize(Model.Inventory))');
+
+        // load inventory array
+        let dataArr = inventoryarray.map((e) => {
+
+            let resultingSum = sourcearray.reduce((acc, cur)=>{
+                if(cur.inventoryId == e.id){
+                    acc += cur.order_qty
+                }
+                return acc
+            },0)
+
+
+
+          return {name: e.name, y: resultingSum}
+        })
+
+
+        // load quantity of each t shirt
+
+        document.addEventListener('DOMContentLoaded', function () {
+        var myChart = Highcharts.chart('container', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Best Selling Products'
+            },
+            series: [{
+                name: 'Total Requested',
+                colorByPoint: true,
+                data: dataArr
+            }]
+        });
+    });
+    </script>
+}
