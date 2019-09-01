@@ -8,7 +8,56 @@
     <h2 class="heading-level-2">Order Manager</h2>
     <div class="row">
         <div class="col-sm">
-            <h4>Orders Received From 09/01/2019 to 09/30/2019</h4>
+            <h5>Orders Placed From Last 30 Days</h5>
+            <table class="table table-sm border rounded">
+                <thead>
+                <tr>
+                    <th>
+                        Order ID
+                    </th>
+                    <th>
+                        Customer
+                    </th>
+                    <th>
+                        Total Pieces
+                    </th>
+                    <th>
+                        Amount
+                    </th>
+                    <th>
+                        Order Status
+                    </th>
+
+                    <th>
+                        Ref Code
+                    </th>
+                </tr>
+            </thead>
+                <tbody>
+            @foreach (var item in Model.PrevOrders) {
+                    <tr>
+                        <td>
+                            <a asp-page="./Details" asp-route-id="@item.id">@Html.DisplayFor(modelItem => item.id)</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Customer.first_name)  @Html.DisplayFor(modelItem => item.Customer.last_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.total_pieces)
+                        </td>
+                        <td>
+                            $@Html.DisplayFor(modelItem => item.total_sale_price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.reference_code)
+                        </td>
+                    </tr>
+            }
+            <tbody>
+            </table>
         </div>
         <div class="col-sm">
             <div id="container" style="width:100%; height:400px;">
