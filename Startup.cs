@@ -12,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using techtshirt.Data;
 using techtshirt.Models;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 
 
@@ -42,7 +44,11 @@ namespace techtshirt
                 options.UseSqlServer(_connectionString);
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().AddJsonOptions(options => {
+        options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+    }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
             services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
         }
 

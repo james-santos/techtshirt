@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using techtshirt.Data;
 using techtshirt.Models;
 
-namespace techtshirt.Views.Home
+namespace techtshirt.Pages.Dashboard
 {
     public class IndexModel : PageModel
     {
@@ -20,11 +20,15 @@ namespace techtshirt.Views.Home
         }
 
         public IList<Order> Order { get;set; }
+        public IList<Order_Inventory> Order_Inventory { get;set; }
 
         public async Task OnGetAsync()
         {
-            Order = await _context.Order.AsNoTracking()
-                                        .ToListAsync();
+            // Order = await _context.Order.AsNoTracking()
+            //                             .ToListAsync();
+        Order_Inventory = await _context.Order_Inventory
+                .Include(o => o.Inventory)
+                .Include(o => o.Order).ToListAsync();
         }
     }
 }
