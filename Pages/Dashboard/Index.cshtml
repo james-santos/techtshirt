@@ -11,7 +11,6 @@
             <h4>Orders Received From 09/01/2019 to 09/30/2019</h4>
         </div>
         <div class="col-sm">
-            <h4>Best Selling Products</h4>
             <div id="container" style="width:100%; height:400px;">
 
             </div>
@@ -27,7 +26,25 @@
     <script>
 
         var sourcearray = JSON.parse('@Html.Raw(Json.Serialize(Model.Order_Inventory))');
-        console.log(sourcearray)
+        var inventoryarray = JSON.parse('@Html.Raw(Json.Serialize(Model.Inventory))');
+
+        // load inventory array
+        let dataArr = inventoryarray.map((e) => {
+
+            let resultingSum = sourcearray.reduce((acc, cur)=>{
+                if(cur.inventoryId == e.id){
+                    acc += cur.order_qty
+                }
+                return acc
+            },0)
+
+
+
+          return {name: e.name, y: resultingSum}
+        })
+
+
+        // load quantity of each t shirt
 
         document.addEventListener('DOMContentLoaded', function () {
         var myChart = Highcharts.chart('container', {
@@ -37,20 +54,10 @@
             title: {
                 text: 'Best Selling Products'
             },
-            xAxis: {
-                categories: ['Apples', 'Bananas', 'Oranges']
-            },
-            yAxis: {
-                title: {
-                    text: 'Fruit eaten'
-                }
-            },
             series: [{
-                name: 'Jane',
-                data: [1, 0, 4]
-            }, {
-                name: 'John',
-                data: [5, 7, 3]
+                name: 'Total Requested',
+                colorByPoint: true,
+                data: dataArr
             }]
         });
     });
