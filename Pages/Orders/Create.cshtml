@@ -294,7 +294,7 @@
                 data: JSON.stringify({ data: invDto, order: ordModel }),
                 // dataType: "json",
                 success: function (response) {
-                    window.location.href = "https://localhost:5001/Orders/";
+                    window.location.href = window.location.protocol + "//" + window.location.host + "/"+"Orders/";
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     console.log(xhr)
