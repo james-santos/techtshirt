@@ -45,9 +45,12 @@ namespace techtshirt
             });
 
             services.AddMvc().AddJsonOptions(options => {
-        options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-    }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            }).AddRazorPagesOptions(options =>
+            {
+                options.Conventions.AddPageRoute("/Dashboard/Index", "");
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
         }
