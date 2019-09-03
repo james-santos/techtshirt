@@ -13,6 +13,9 @@
             </div>
         </div>
         <div class="col-sm">
+            <div id="containerGrossMonth">
+
+            </div>
         </div>
     </div>
     <div class="row">
@@ -96,13 +99,10 @@
                 return acc
             },0)
 
-
-
           return {name: e.name, y: resultingSum}
         })
 
         // load quantity of each t shirt
-
         document.addEventListener('DOMContentLoaded', function () {
             // pie chart
         var myChart = Highcharts.chart('container', {
@@ -118,11 +118,14 @@
                 data: dataArr
             }]
         });
+
+
          var monthMap = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+
          var prevarray = JSON.parse('@Html.Raw(Json.Serialize(Model.LastFiveOrders))');
+
          let dateCate = prevarray.reduce((acc, e)=> {
              var date = new Date(e.date_placed);
-             console.log(date)
             let dKey = monthMap[date.getMonth()] + " " + date.getDate() + "-" + date.getFullYear()
             if(dKey in acc){
                 acc[dKey] += e.total_sale_price
@@ -135,7 +138,6 @@
 
         let categoriesKeys = Object.keys(dateCate)
         let dataValues  = Object.values(dateCate)
-        console.log(categoriesKeys, dataValues)
 
         // gross sales by day chart starts here
         Highcharts.chart('containerGrossDay', {
@@ -165,6 +167,65 @@
             name: 'Gross sale',
             data: dataValues
         }]
+        });
+
+
+
+        var monthsarray = JSON.parse('@Html.Raw(Json.Serialize(Model.MonthsOrders))');
+        console.log(monthsarray)
+        let dateCateMonthly = monthsarray.reduce((acc, e)=> {
+            // console.log(e.date_placed)
+             var date = new Date(e.date_placed);
+            let dKey = monthMap[date.getMonth()]
+            if(dKey in acc){
+                acc[dKey] += e.total_sale_price
+            }else{
+                acc[dKey] = e.total_sale_price
+            }
+            return acc
+
+         },{});
+
+        console.log(dateCateMonthly)
+        let months = Object.keys(dateCateMonthly)
+        let grossValsMonths  = Object.values(dateCateMonthly)
+        // Set up the chart for bar
+        Highcharts.chart('containerGrossMonth', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Gross Sales (per month)'
+            },
+            xAxis: {
+                categories: months
+            },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Amount (USD)'
+                    }
+                },
+            legend: {
+                shadow: false
+            },
+            tooltip: {
+                shared: true
+            },
+            plotOptions: {
+                column: {
+                    grouping: false,
+                    shadow: false,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Gross Values',
+                color: 'rgba(165,170,217,1)',
+                data: grossValsMonths,
+                pointPadding: 0.3,
+                pointPlacement: -0.2
+            }]
         });
     });
     </script>
