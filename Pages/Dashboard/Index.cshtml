@@ -8,6 +8,15 @@
     <h2 class="heading-level-2">Order Manager</h2>
     <div class="row">
         <div class="col-sm">
+            <div id="containerGrossDay">
+
+            </div>
+        </div>
+        <div class="col-sm">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
             <h5>Orders Placed From Last 30 Days</h5>
             <table class="table table-sm border rounded">
                 <thead>
@@ -92,10 +101,10 @@
           return {name: e.name, y: resultingSum}
         })
 
-
         // load quantity of each t shirt
 
         document.addEventListener('DOMContentLoaded', function () {
+            // pie chart
         var myChart = Highcharts.chart('container', {
             chart: {
                 type: 'pie'
@@ -108,6 +117,54 @@
                 colorByPoint: true,
                 data: dataArr
             }]
+        });
+         var monthMap = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+         var prevarray = JSON.parse('@Html.Raw(Json.Serialize(Model.LastFiveOrders))');
+         let dateCate = prevarray.reduce((acc, e)=> {
+             var date = new Date(e.date_placed);
+             console.log(date)
+            let dKey = monthMap[date.getMonth()] + " " + date.getDate() + "-" + date.getFullYear()
+            if(dKey in acc){
+                acc[dKey] += e.total_sale_price
+            }else{
+                acc[dKey] = e.total_sale_price
+            }
+            return acc
+
+         },{});
+
+        let categoriesKeys = Object.keys(dateCate)
+        let dataValues  = Object.values(dateCate)
+        console.log(categoriesKeys, dataValues)
+
+        // gross sales by day chart starts here
+        Highcharts.chart('containerGrossDay', {
+            chart: {
+                type: 'area'
+            },
+            title: {
+                text: 'Gross Sales (per day placed)'
+            },
+            xAxis: {
+                // type: 'datetime',
+                categories: categoriesKeys
+            },
+            yAxis: {
+                title: {
+                    text: 'Amount'
+                },
+                labels: {
+                    formatter: function () {
+                        return this.value;
+                    }
+                }
+            },
+            tooltip: {
+            },
+            series: [{
+            name: 'Gross sale',
+            data: dataValues
+        }]
         });
     });
     </script>
