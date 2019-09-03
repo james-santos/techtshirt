@@ -48,7 +48,7 @@
             });
 
             $('#hit').click(function() {
-                window.location.href = `https://localhost:5001/Orders/Details?id=${$('#findid').val()}`;
+                window.location.href = window.location.protocol + "//" + window.location.host + "/" +`Orders/Details?id=${$('#findid').val()}`;
             });
         });
     </script>
